@@ -2,6 +2,7 @@
 データ型 :カラム名
 
 - User 
+
 | data       | colum           |
 |:-----------|:----------------|
 | string     | personal_id     |    
@@ -9,6 +10,7 @@
 | string     | password_digest | 
 
 - Task
+
 | data       | colum           |
 |:-----------|:----------------|
 | string     | title           |    
@@ -18,6 +20,7 @@
 | string     | status          |
 
 - Label:
+
 | data       | colum           |
 |:-----------|:----------------|
 | string     | label_name      |    
