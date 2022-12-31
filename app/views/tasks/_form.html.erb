@@ -1,16 +1,27 @@
 <br>
+
 <%= form_with(model: task, local: true) do |f| %>
-  <%= f.label 'タスク名' %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, t('.errors')) %></h2>
+        <% task.errors.full_messages.each do |error| %>
+          <%= error %>
+          <br>
+        <% end %>
+    </div>
+  <% end %>
+<br>
+  <%= f.label 'title' %>
   <br>
   <%= f.text_field :title %>
   <br>
-  <%= f.label 'タスク詳細' %>
+  <%= f.label 'content' %>
   <br>
   <%= f.text_area :content %>
   <br>
   <% if current_page?(new_task_path) %>
-    <%= f.submit "登録する" %>
+    <%= f.submit %>
   <% else %>
-    <%= f.submit "編集する" %>
+    <%= f.submit t('.update') %>
   <% end %>
 <% end %>

@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      task: タスク
+      user: ユーザー
+      favorite: お気に入り
+    attributes:
+      favorite:
+        user_id: ユーザーID
+        task_id: タスクID
+      task:
+        content: タスク詳細
+        title: タスク名
+      user:
+        name: 名前
+        avatar: アバター
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
