@@ -8,7 +8,7 @@
 
 <body>
 <% @tasks.each do |t| %>
-  <tr>
+  <tr class="task_row" >
   <td>投稿者の名前</td>
   <td><%= t.title %></td>
   <td><%= t.content %></td>
@@ -20,3 +20,4 @@
 </body>
 </table>
 <%= link_to t('.new'), new_task_path %>
+
