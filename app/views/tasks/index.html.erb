@@ -21,6 +21,12 @@
   <td><%= link_to t('.destroy'), t, method: :delete, data: { confirm: t('.confirm') } %></td>
   </tr>
 <% end %>
+<br>
+
+  <%= link_to "作成日でソートする", tasks_path %>
+<br>
+  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+
 </body>
 </table>
 <%= link_to t('.new'), new_task_path %>
