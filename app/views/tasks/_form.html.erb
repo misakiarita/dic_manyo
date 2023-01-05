@@ -9,7 +9,7 @@
         <% end %>
     </div>
   <% end %>
-  <br>
+
   <div>
     <%= f.label 'title' %>
     <br>
@@ -21,10 +21,11 @@
     <%= f.text_area :content %>
   </div>
   <div>
-    <%= f.label 'due' %>
+    <%= f.label t('.due_date') %>
     <br>
     <%= f.datetime_select :due %>
   </div>
+  <br>
   <% if current_page?(new_task_path) %>
     <%= f.submit %>
   <% else %>

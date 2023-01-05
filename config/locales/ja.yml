@@ -11,6 +11,7 @@ ja:
     form:
       update: 更新
       errors: エラーがあります
+      due_date: 終了期限 
     index:
       title: タスク名
       content: タスク詳細
@@ -27,6 +28,8 @@ ja:
       list: 一覧
       title: タスク名
       content: タスク詳細
+      due_date: 終了期限
+      create_date: 投稿日
     edit:
       list: 一覧
       content: 詳細

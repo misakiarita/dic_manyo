@@ -1,3 +1,6 @@
+<b><%= t('.create_date') %></b>
+<br>
+<%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
 <br>
 <b><%= t('.title') %></b>
 <br>
@@ -6,5 +9,9 @@
 <b><%= t('.content') %></b>
 <br>
 <%= @task.content %>
+<br>
+<b><%= t('.due_date') %></b>
+<br>
+<%= @task.due.strftime("%Y-%m-%d") %>
 <br>
 <%= link_to t('.list'), tasks_path %>
