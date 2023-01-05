@@ -2,6 +2,8 @@
 <table>
 <head>
   <th><%= t('.user_name') %></th>
+  <th><%= t('.create_date') %></th>
+  <th><%= t('.due_date') %></th>
   <th><%= t('.title') %></th>
   <th><%= t('.content') %></th>
 </head>
@@ -10,6 +12,8 @@
 <% @tasks.each do |t| %>
   <tr class="task_row" >
   <td>投稿者の名前</td>
+  <td><%= t.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+  <td><%= t.due.strftime("%Y-%m-%d %H:%M") %></td>
   <td><%= t.title %></td>
   <td><%= t.content %></td>
   <td><%= link_to t('.show'), t %></td>

@@ -21,6 +21,8 @@ ja:
       confirm: 本当に削除しますか？
       head: タスク投稿
       user_name: 投稿者
+      create_date: 投稿日
+      due_date: 終了期限
     show:
       list: 一覧
       title: タスク名
