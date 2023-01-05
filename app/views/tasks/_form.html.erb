@@ -1,5 +1,4 @@
 <br>
-
 <%= form_with(model: task, local: true) do |f| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -10,15 +9,22 @@
         <% end %>
     </div>
   <% end %>
-<br>
-  <%= f.label 'title' %>
   <br>
-  <%= f.text_field :title %>
-  <br>
-  <%= f.label 'content' %>
-  <br>
-  <%= f.text_area :content %>
-  <br>
+  <div>
+    <%= f.label 'title' %>
+    <br>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label 'content' %>
+    <br>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.label 'due' %>
+    <br>
+    <%= f.datetime_select :due %>
+  </div>
   <% if current_page?(new_task_path) %>
     <%= f.submit %>
   <% else %>
