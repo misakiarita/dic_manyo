@@ -12,6 +12,7 @@ ja:
       update: 更新
       errors: エラーがあります
       due_date: 終了期限 
+      status: ステータス
     index:
       title: タスク名
       content: タスク詳細
@@ -24,12 +25,14 @@ ja:
       user_name: 投稿者
       create_date: 投稿日
       due_date: 終了期限
+      status: ステータス
     show:
       list: 一覧
       title: タスク名
       content: タスク詳細
       due_date: 終了期限
       create_date: 投稿日
+      status: ステータス
     edit:
       list: 一覧
       content: 詳細

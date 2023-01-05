@@ -14,4 +14,9 @@
 <br>
 <%= @task.due.strftime("%Y-%m-%d") %>
 <br>
+<b><%= t('.status') %></b>
+<br>
+<%= @task.status %>
+<br>
 <%= link_to t('.list'), tasks_path %>
+
