@@ -19,8 +19,18 @@
 | date       | deadline        |
 | string     | status          |
 
-- Label:
+- Label
 
 | data       | colum           |
 |:-----------|:----------------|
 | string     | label_name      |    
+
+
+- Herokuデプロイ
+
+>1\. $ heroku create  
+>2\. $ bundle lock --add-platform x86_64-linux  
+>3\. $ heroku stack:set heroku-20  
+>4\. package.jsにnode.jsのバージョンを追記  
+>5\. $ git addと$ git commit  
+>6\. git push heroku dev_step2(自分の作用ブランチ):master  

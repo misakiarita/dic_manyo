@@ -1,10 +1,10 @@
 <br>
-<b>タスク名</b>
+<b><%= t('.title') %></b>
 <br>
 <%= @task.title %>
 <br>
-<b>タスク詳細</b>
+<b><%= t('.content') %></b>
 <br>
 <%= @task.content %>
 <br>
-<%= link_to '一覧', tasks_path %>
+<%= link_to t('.list'), tasks_path %>

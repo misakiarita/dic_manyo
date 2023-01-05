@@ -1,22 +1,23 @@
-<h1>Task</h1>
+<h1><%= t('.head') %></h1>
 <table>
 <head>
-  <th>投稿者</th>
-  <th>タスク名</th>
-  <th>詳細</th>
+  <th><%= t('.user_name') %></th>
+  <th><%= t('.title') %></th>
+  <th><%= t('.content') %></th>
 </head>
 
 <body>
 <% @tasks.each do |t| %>
-  <tr>
+  <tr class="task_row" >
   <td>投稿者の名前</td>
   <td><%= t.title %></td>
   <td><%= t.content %></td>
-  <td><%= link_to '詳細', t %></td>
-  <td><%= link_to '編集', edit_task_path(t) %></td>
-  <td><%= link_to '削除', t, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+  <td><%= link_to t('.show'), t %></td>
+  <td><%= link_to t('.edit'), edit_task_path(t) %></td>
+  <td><%= link_to t('.destroy'), t, method: :delete, data: { confirm: t('.confirm') } %></td>
   </tr>
 <% end %>
 </body>
 </table>
-<%= link_to '新規作成', new_task_path %>
+<%= link_to t('.new'), new_task_path %>
+
