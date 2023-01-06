@@ -1,5 +1,5 @@
 <h1><%= t('.head') %></h1>
-<%= form_with(scope: :task, local: true, method: :get, url: tasks_path) do |f| %>
+<%= form_with( model:Task.new, local: true, method: :get, url: tasks_path) do |f| %>
   <%= f.text_field :title %>
 
   <%= f.select :status, [["", ""], ["未着手", 0], ["着手中", 1], ["完了", 2]] %>
