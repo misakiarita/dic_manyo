@@ -27,7 +27,6 @@ RSpec.describe 'タスク管理機能', type: :system do
 
       visit tasks_path
       task_list = all('.task_row')
-      # binding.pry 
       expect(task_list[0]).to have_content 'タイトル2'
       expect(task_list[1]).to have_content 'タイトル1'
       end
