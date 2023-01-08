@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     end
 
     if params[:task].present?
-      if params[:task][:status].present? && params[:task][:title].present?  
+      if params[:task][:status].present? && params[:task][:title].present? 
         @tasks = Task.title_search(params)
         # ("%#{params[:task][:title]}%")
         # .where('title LIKE ?', "%#{params[:task][:title]}%")
