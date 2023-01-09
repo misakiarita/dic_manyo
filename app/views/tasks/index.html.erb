@@ -36,6 +36,8 @@
   <%= link_to "作成日でソートする", tasks_path %>
 <br>
   <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<br>
+  <%= link_to "優先順位が高い順", tasks_path(priority_level: "true") %>
 
 </body>
 </table>
