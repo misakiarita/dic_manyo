@@ -1,46 +1,46 @@
 <h1><%= t('.head') %></h1>
-<%= form_with( model:Task.new, local: true, method: :get, url: tasks_path) do |f| %>
-  <%= f.text_field :title %>
-  <%= f.select  :status, [["", ""], ["未着手", 0], ["着手中", 1], ["完了", 2]] %>
-  <%= f.select :priority_level, [["", ""], ["高", 0], ["中", 1], ["低", 2]] %>
-  <%= f.submit '検索' %>
-<% end %>
-<table>
-<head>
-  <th><%= t('.user_name') %></th>
-  <th><%= t('.create_date') %></th>
-  <th><%= t('.due_date') %></th>
-  <th><%= t('.status') %></th>
-  <th><%= '優先度' %></th>
-  <th><%= t('.title') %></th>
-  <th><%= t('.content') %></th>
-</head>
-
 <body>
-<% @tasks.each do |t| %>
-  <tr class="task_row" >
-  <td>投稿者の名前</td>
-  <td><%= t.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-  <td><%= t.due.strftime("%Y-%m-%d") %></td>
-  <td><%= t.status %></td>
-  <td><%= t.priority_level %></td>
-  <td><%= t.title %></td>
-  <td><%= t.content %></td>
-  <td><%= link_to t('.show'), t %></td>
-  <td><%= link_to t('.edit'), edit_task_path(t) %></td>
-  <td><%= link_to t('.destroy'), t, method: :delete, data: { confirm: t('.confirm') } %></td>
-  </tr>
-<% end %>
-<br>
+  <%= form_with( model:Task.new, local: true, method: :get, url: tasks_path) do |f| %>
+    <table>
+    <th><%= t('.title') %><%= f.text_field :title %></th>
+    <th><%= t('.status') %><%= f.select  :status, [["", ""], ["未着手", 0], ["着手中", 1], ["完了", 2]] %></th>
+    <th><%= f.submit '検索' %></th>
+    </table>
+  <% end %>
 
-  <%= link_to "作成日でソートする", tasks_path %>
-<br>
-  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<br>
-  <%= link_to "優先順位が高い順", tasks_path(priority_level: "true") %>
+  <p>
+    <%= link_to t('.sort by created at'), tasks_path %>
+  </p>
 
+  <table>
+    <head>
+      <th><%= t('.user_name') %></th>
+      <th><%= t('.create_date') %></th>
+      <th><%= link_to t('.sort by due date'), tasks_path(sort_expired: "true") %></th>
+      <th><%= t('.status') %></th>
+      <th><%= link_to t('.sort by priority'), tasks_path(priority_level: "true") %></th>
+      <th><%= t('.title') %></th>
+      <th><%= t('.content') %></th>
+    </head>
+
+    <% @tasks.each do |t| %>
+      <tr class="task_row" >
+      <td>投稿者の名前</td>
+      <td><%= t.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      <td><%= t.due.strftime("%Y-%m-%d") %></td>
+      <td><%= t.status %></td>
+      <td><%= t.priority_level %></td>
+      <td><%= t.title %></td>
+      <td><%= t.content %></td>
+      <td><%= link_to t('.show'), t %></td>
+      <td><%= link_to t('.edit'), edit_task_path(t) %></td>
+      <td><%= link_to t('.destroy'), t, method: :delete, data: { confirm: t('.confirm') } %></td>
+      </tr>
+    <% end %>
+
+    
+    </table>
 </body>
-</table>
 
 <%= link_to t('.new'), new_task_path %>
 <%= paginate @tasks %>
