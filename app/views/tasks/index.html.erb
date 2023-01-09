@@ -1,7 +1,7 @@
 <h1><%= t('.head') %></h1>
 <%= form_with( model:Task.new, local: true, method: :get, url: tasks_path) do |f| %>
   <%= f.text_field :title %>
-  <%= f.select :status, [["", ""], ["未着手", 0], ["着手中", 1], ["完了", 2]] %>
+  <%= f.select  :status, [["", ""], ["未着手", 0], ["着手中", 1], ["完了", 2]] %>
   <%= f.select :priority_level, [["", ""], ["高", 0], ["中", 1], ["低", 2]] %>
   <%= f.submit '検索' %>
 <% end %>
