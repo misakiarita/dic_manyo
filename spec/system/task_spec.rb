@@ -44,6 +44,19 @@ RSpec.describe 'タスク管理機能', type: :system do
           expect(task_list[1]).to have_content 'タイトル2'
       end
     end
+
+    context 'タスクが優先順位昇順に並んでいる場合' do
+      it '高のタスクが順に表示される' do
+        task = FactoryBot.create(:task)
+        task = FactoryBot.create(:second_task)
+
+        visit tasks_path
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'タイトル2'
+        expect(task_list[1]).to have_content 'タイトル1'
+      end
+    end
+
   end
    
 
