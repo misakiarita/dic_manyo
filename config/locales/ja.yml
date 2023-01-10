@@ -28,7 +28,7 @@ ja:
       status: ステータス
       sort by created at: 作成日順に戻す
       sort by due date: 終了期限順▼
-      sort by priority: 優先度位順▼
+      sort by priority: 優先度順▼
       priority: 優先度
 
     show:
