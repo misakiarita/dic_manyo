@@ -37,7 +37,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         task = FactoryBot.create(:task, title: 'タイトル1', due: "2023-02-10 11:48:00")
         task = FactoryBot.create(:second_task, title: 'タイトル2', due: "2023-02-07 11:48:00")
         visit tasks_path
-        click_on '終了期限でソートする'
+        click_on '終了期限順▼'
         sleep(2)
         task_list = all('.task_row')
           expect(task_list[0]).to have_content 'タイトル1'
@@ -49,11 +49,12 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '高のタスクが順に表示される' do
         task = FactoryBot.create(:task)
         task = FactoryBot.create(:second_task)
-
         visit tasks_path
+        click_on '優先度順▼'
+        sleep(2)
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'タイトル2'
-        expect(task_list[1]).to have_content 'タイトル1'
+        expect(task_list[0]).to have_content 'タイトル1'
+        expect(task_list[1]).to have_content 'タイトル2'
       end
     end
 
