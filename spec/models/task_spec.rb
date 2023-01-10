@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'タスクモデル機能', type: :model do
+
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかる' do
@@ -21,4 +22,43 @@ RSpec.describe 'タスクモデル機能', type: :model do
       end
     end
   end
+
+  describe '検索機能' do
+    let!(:task) { FactoryBot.create(:task, title: 'task') }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "sample") }
+    let!(:third_task) { FactoryBot.create(:third_task, title: "sample") }
+
+    context 'scopeメソッドでタイトルのあいまい検索をした場合'  do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+      
+        expect(Task.title_search('task')).to include(task)
+        expect(Task.title_search('task')).not_to include(second_task)
+        expect(Task.title_search('task').count).to eq 1
+
+        #paramsの検索も考えとく
+        # params =  {[:task]=>{[:title]=>"task", [:status]=>""}, "commit"=>"検索"}
+        # expect(Task.title_search(params)).to include(task)
+        # expect(Task.title_search(params)).not_to include(second_task)
+        # expect(Task.title_search(params).count).to eq 1
+      
+      end
+    end
+    context 'scopeメソッドでステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+
+        expect(Task.status_search(1)).to include(second_task)
+        expect(Task.title_search(1)).not_to include(task)
+        expect(Task.status_search(1).count).to eq 2
+       
+      end
+    end
+    context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        expect(Task.status_search(1).title_search('sample')).to include(second_task)
+        expect(Task.status_search(1).title_search('sample')).not_to include(task)
+        expect(Task.status_search(1).count).to eq 2
+      end
+    end
+  end
+
 end
