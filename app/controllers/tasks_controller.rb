@@ -16,7 +16,7 @@ class TasksController < ApplicationController
         @tasks = Task.title_search(params[:task][:title]).page(params[:page]).per(5)
       elsif params[:task][:status].present? 
         @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(5)
-    end
+      end
     end   
   end
 
