@@ -1,0 +1,15 @@
+<h1>ユーザー一覧画面</h1>
+<body>
+<table>
+<head>
+<th>名前</th>
+<th>メールアドレス</th>
+</head>
+<% @users.each do |t| %>
+  <tr class="task_row" >
+  <td><%= t.name %></td>
+  <td><%= t.email %></td>
+  </tr>
+<% end %>
+</table>
+</body>
