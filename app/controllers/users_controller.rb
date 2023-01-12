@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :login_already, only: [:new]
+  before_action :user_check, only: [:show]
 
   def new
     @user = User.new
@@ -29,6 +30,13 @@ class UsersController < ApplicationController
   def login_already
     if current_user
       flash[:notice]="ログイン中です"
+      redirect_to user_path(current_user.id)
+    end
+  end
+
+  def user_check
+    if current_user.id != params[:id].to_i
+      flash[:notice]="権限がありません"
       redirect_to user_path(current_user.id)
     end
   end

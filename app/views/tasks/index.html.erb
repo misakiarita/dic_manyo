@@ -25,7 +25,7 @@
 
     <% @tasks.each do |t| %>
       <tr class="task_row" >
-      <td>投稿者の名前</td>
+      <td><%= t.user.name %></td>
       <td><%= t.created_at.strftime("%Y-%m-%d %H:%M") %></td>
       <td><%= t.due.strftime("%Y-%m-%d") %></td>
       <td><%= t.status %></td>
