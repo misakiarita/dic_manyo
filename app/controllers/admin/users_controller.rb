@@ -18,7 +18,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    # @users = User.all
+    @users = User.select(:name, :email)
   end
 
   def destroy
