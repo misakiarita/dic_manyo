@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :admin_user
+  skip_before_action :login_required, only: [:new, :create ]
+  before_action :if_not_admin
 
   def new
     @user = User.new
@@ -8,20 +9,19 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user.id)
+      redirect_to admin_users_path, notice: "ユーザーを作成しました！"
     else
       render :new
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def index
-    # @users = User.all
-    @users = User.select(:name, :email, :id)
+    @users = User.all
+    # @users = User.select(:name, :email, :id)
   end
 
   def edit
@@ -41,14 +41,15 @@ class Admin::UsersController < ApplicationController
   @user = User.find(params[:id])
     if @user.destroy
       flash[:notice] = '削除しました'
-      redirect_to admin_user_path
+      redirect_to admin_users_path
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:admin, :name, :email, 
+    :password, :password_confirmation)
   end
 
   def login_already
@@ -65,7 +66,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def admin_user
-    redirect_to user_path(current_user.id) unless current_user.admin?
+  def if_not_admin
+    redirect_to tasks_path, notice: "あなたは管理者ではありません。" unless admin_user?
   end
 end
