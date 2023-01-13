@@ -13,16 +13,19 @@
 </div>
 <% end %>
 
-  <%= f.label :name %>
+  <%= f.label '名前' %>
   <%= f.text_field :name %>
 
-  <%= f.label :email %>
+  <%= f.label 'Eメール' %>
   <%= f.email_field :email %>
 
-  <%= f.label :password %>
+  <%= f.label '管理者権限' %>
+  <%= f.select :admin, [["一般ユーザー","false"], ["管理者ユーザー","true"]]  %>
+  
+  <%= f.label 'パスワード' %>
   <%= f.password_field :password %>
 
-  <%= f.label :password_confirmation %>
+  <%= f.label '確認パスワード' %>
   <%= f.password_field :password_confirmation %>
 
   <%= f.submit "登録する" %>

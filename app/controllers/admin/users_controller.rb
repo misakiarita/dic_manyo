@@ -32,6 +32,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = 'ユーザーを編集しました！'
+      redirect_to  admin_users_path
     else
       render :edit
     end
@@ -61,12 +62,12 @@ class Admin::UsersController < ApplicationController
 
   def user_check
     if current_user.id != params[:id].to_i
-      flash[:notice]="権限がありません"
+      flash[:notice]="アクセス権限がありません"
       redirect_to user_path(current_user.id)
     end
   end
 
   def if_not_admin
-    redirect_to tasks_path, notice: "あなたは管理者ではありません。" unless admin_user?
+    redirect_to tasks_path, notice: "管理者権限がありません。" unless admin_user?
   end
 end

@@ -6,10 +6,10 @@
 <th>メールアドレス</th>
 </head>
 <% @users.each do |t| %>
-  <tr class="task_row" >
+  <tr class="user_row" >
   <td><%= t.name %></td>
   <td><%= t.email %></td>
-  <td><%= link_to '編集', edit_task_path(t) %></td>
+  <td><%= link_to '編集', edit_admin_user_path(t) %></td>
   <td><%= link_to '削除', admin_user_path(t), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
   </tr>
 <% end %>
