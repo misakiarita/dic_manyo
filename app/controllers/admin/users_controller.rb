@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :admin_user
+
   def new
     @user = User.new
   end
@@ -19,11 +21,28 @@ class Admin::UsersController < ApplicationController
 
   def index
     # @users = User.all
-    @users = User.select(:name, :email)
+    @users = User.select(:name, :email, :id)
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = 'ユーザーを編集しました！'
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+  @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = '削除しました'
+      redirect_to admin_user_path
+    end
   end
 
   private
@@ -44,5 +63,9 @@ class Admin::UsersController < ApplicationController
       flash[:notice]="権限がありません"
       redirect_to user_path(current_user.id)
     end
+  end
+
+  def admin_user
+    redirect_to user_path(current_user.id) unless current_user.admin?
   end
 end
