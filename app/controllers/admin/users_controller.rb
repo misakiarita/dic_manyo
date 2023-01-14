@@ -34,6 +34,7 @@ class Admin::UsersController < ApplicationController
       flash[:notice] = 'ユーザーを編集しました！'
       redirect_to  admin_users_path
     else
+      flash[:notice] = '変更内容に誤りがあるか、管理者ユーザーがいなくなるため削除できません'
       render :edit
     end
   end
@@ -42,6 +43,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.destroy
       flash[:notice] = '削除しました'
+      redirect_to admin_users_path
+    else
+      flash[:notice] = '削除できません'
       redirect_to admin_users_path
     end
   end
