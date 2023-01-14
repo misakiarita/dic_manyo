@@ -5,6 +5,7 @@ FactoryBot.define do
     due {Time.now}
     status {0}
     priority_level {0}
+    user_id {'1'}
   end
   factory :second_task, class: Task do
     title { 'タイトル2' }
@@ -12,6 +13,7 @@ FactoryBot.define do
     due {Time.now}
     status {1}
     priority_level {1}
+    user_id {'1'}
   end
   factory :third_task, class: Task do
     title { 'タイトル3' }
@@ -19,6 +21,7 @@ FactoryBot.define do
     due {Time.now}
     status {1}
     priority_level {2}
+    user_id {'1'}
   end
 end
 

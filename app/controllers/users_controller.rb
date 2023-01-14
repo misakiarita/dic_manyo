@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def user_check
     if current_user.id != params[:id].to_i
       flash[:notice]="アクセス権限がありません"
-      redirect_to user_path(current_user.id)
+      redirect_to tasks_path
     end
   end
 end
