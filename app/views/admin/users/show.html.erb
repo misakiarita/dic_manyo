@@ -1,6 +1,29 @@
-<h1>管理者画面</h1>
+<h1><%= @user.name %></h1>
+<body>
+<table class="table table-striped table-bordered">
 
-<p>MENU</p>
+<head>
+<th>タスク名</th>
+<th>タスク詳細</th>
+<th>投稿日</th>
+<th>終了期限</th>
+<th>優先度</th>
+<th>ステータス</th>
+</head>
+
+<% @user.tasks.each do |t| %>
+<tr class="task_row" >
+<td><%= t.title %></td>
+<td><%= t.content %></td>
+<td><%= t.created_at.strftime("%Y-%m-%d %H:%M")  %></td>
+<td><%= t.due.strftime("%Y-%m-%d")  %></td>
+<td><%= t.priority_level  %></td>
+<td><%= t.status  %></td>
+</tr>
+<% end %>
+
+</table>
+</body>
 <%= link_to 'ユーザー 一覧', admin_users_path %>
 <br>
 <%= link_to 'タスク 一覧', tasks_path %>

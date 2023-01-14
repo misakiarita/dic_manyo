@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
+     @user = User.find(params[:id])
   end
 
   def index
@@ -39,7 +39,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-  @user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.destroy
       flash[:notice] = '削除しました'
       redirect_to admin_users_path
@@ -70,4 +70,5 @@ class Admin::UsersController < ApplicationController
   def if_not_admin
     redirect_to tasks_path, notice: "管理者権限がありません。" unless admin_user?
   end
+
 end
