@@ -1,0 +1,32 @@
+<h1>ユーザー登録画面</h1>
+
+<%= form_with(model: @user, url: admin_users_path, local: true) do |f| %> 
+
+<% if @user.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <%= f.label '名前' %>
+  <%= f.text_field :name %>
+
+  <%= f.label 'Eメール' %>
+  <%= f.email_field :email %>
+
+  <%= f.label '管理者権限' %>
+  <%= f.select :admin, [["一般ユーザー","false"], ["管理者ユーザー","true"]]  %>
+  
+  <%= f.label 'パスワード' %>
+  <%= f.password_field :password %>
+
+  <%= f.label '確認パスワード' %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "登録する" %>
+<% end %>
