@@ -48,6 +48,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    labels = Labeling.where(task_id: @task.id).pluck(:label_id)
+    @labels = Label.find(labels)
   end
 
   def edit

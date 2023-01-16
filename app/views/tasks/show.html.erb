@@ -18,5 +18,11 @@
 <br>
 <%= @task.status %>
 <br>
+<b>ラベル</b>
+<br>
+<% @labels.each do |tag| %>
+<%= tag.label_name %>
+<% end %>
+<br>
 <%= link_to t('.list'), tasks_path %>
 
