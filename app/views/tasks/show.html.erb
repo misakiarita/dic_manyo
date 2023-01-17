@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 200px;" >
+<div class="text-center">
 <h1>タスクの詳細</h1>  
   <b><%= t('.create_date') %></b>
   <%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
@@ -14,7 +14,7 @@
   <br>
   <b><%= t('.status') %></b>
   <%= @task.status %>
-  <p>ラベル:
+  <p><b>ラベル</b>:
   <% @labels.each do |tag| %>
     <%= tag.label_name %>
   <% end %>

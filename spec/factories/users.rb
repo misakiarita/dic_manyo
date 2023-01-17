@@ -14,9 +14,9 @@ FactoryBot.define do
     admin {false}
   end
   factory :third_user, class: User do
-    name { "user2" }
-    email { "user2@gmail.com" }
-    password { "user2@gmail.com" }
+    name { "user3" }
+    email { "user3@gmail.com" }
+    password { "user3@gmail.com" }
     # password_confirmation { "MyString2" }
     admin {false}
   end

@@ -23,5 +23,16 @@ FactoryBot.define do
     priority_level {2}
     user_id {'1'}
   end
+  factory :label_task, class: Task do
+    title {'タイトルラベル１'}
+    content {'コンテントラベル１'}
+    user_id {'1'}
+    label_ids {1}
+
+    after(:build) do |task|
+      label = create{:test_label}
+      task.labeling << build(:labeling, task: label_task, label: test_label)
+    end
+  end
 end
 

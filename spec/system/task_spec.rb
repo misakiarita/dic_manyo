@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
+    user = FactoryBot.create(:second_user)
     visit new_session_path
     fill_in 'session[email]', with: 'user2@gmail.com'    
     fill_in 'session[password]', with: 'user2@gmail.com'    
