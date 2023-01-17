@@ -35,7 +35,18 @@
     <br>
     <%= f.select :priority_level, Task.priority_levels.keys %>
   </div>
+  <div>
+    <%= f.label 'ラベル' %>
+    <br>
+    <label>
+    <% Label.all.each do |label|%>
+      <%= f.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false}, label[:id] %>
+      <%= label.label_name %>
+    <% end %>
+    </label>
+  </div>
   <br>
+
   <% if current_page?(new_task_path) %>
     <%= f.submit %>
   <% else %>

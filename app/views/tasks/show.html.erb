@@ -1,22 +1,25 @@
-<b><%= t('.create_date') %></b>
-<br>
-<%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
-<br>
-<b><%= t('.title') %></b>
-<br>
-<%= @task.title %>
-<br>
-<b><%= t('.content') %></b>
-<br>
-<%= @task.content %>
-<br>
-<b><%= t('.due_date') %></b>
-<br>
-<%= @task.due.strftime("%Y-%m-%d") %>
-<br>
-<b><%= t('.status') %></b>
-<br>
-<%= @task.status %>
-<br>
+<div class="text-center">
+<h1>タスクの詳細</h1>  
+  <b><%= t('.create_date') %></b>
+  <%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
+  <br>
+  <b><%= t('.title') %></b>
+  <%= @task.title %>
+  <br>
+  <b><%= t('.content') %></b>
+  <%= @task.content %>
+  <br>
+  <b><%= t('.due_date') %></b>
+  <%= @task.due.strftime("%Y-%m-%d") %>
+  <br>
+  <b><%= t('.status') %></b>
+  <%= @task.status %>
+  <p><b>ラベル</b>:
+  <% @labels.each do |tag| %>
+    <%= tag.label_name %>
+  <% end %>
+  </p>
+</div>
+  <br>
 <%= link_to t('.list'), tasks_path %>
 

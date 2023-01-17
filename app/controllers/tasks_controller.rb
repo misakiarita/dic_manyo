@@ -14,18 +14,20 @@ class TasksController < ApplicationController
     end
 
     if params[:task].present?
-      if params[:task][:status].present? && params[:task][:title].present? 
-        @tasks = current_user.tasks.title_search(params[:task][:title]).page(params[:page]).per(5)
-        @tasks = current_user.tasks.status_search(params[:task][:status]).page(params[:page]).per(5)
+      task_status = params[:task][:status]
+      task_title = params[:task][:title]
+      task_label = params[:task][:label_ids]
+      if task_status.present? && task_title.present? 
+        @tasks = current_user.tasks.title_search(task_title).page(params[:page]).per(5)
+        @tasks = current_user.tasks.status_search(task_status).page(params[:page]).per(5)
+      elsif task_title.present?
+        @tasks = current_user.tasks.title_search(task_title).page(params[:page]).per(5)
         # @tasks = Task.title_search(params[:task][:title]).page(params[:page]).per(5)
-        # @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(5)  
-      elsif params[:task][:title].present?
-        @tasks = current_user.tasks.title_search(params[:task][:title]).page(params[:page]).per(5)
-        # @tasks = Task.title_search(params[:task][:title]).page(params[:page]).per(5)
-      elsif params[:task][:status].present? 
-        @tasks = current_user.tasks.status_search(params[:task][:status]).page(params[:page]).per(5)
+      elsif task_status.present? 
+        @tasks = current_user.tasks.status_search(task_status).page(params[:page]).per(5)
+      elsif task_label.present?
+        @tasks = current_user.tasks.label_search(task_label).page(params[:page]).per(5)
 
-        # @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(5)
       end
     end   
   end
@@ -48,6 +50,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    labels = Labeling.where(task_id: @task.id).pluck(:label_id)
+    @labels = Label.find(labels)
   end
 
   def edit
@@ -75,7 +79,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :title, :due, :status, :priority_level)
+    params.require(:task).permit(:content, :title, :due, :status, :priority_level, {label_ids: []})
   end
 
 end

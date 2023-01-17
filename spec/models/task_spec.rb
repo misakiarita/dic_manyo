@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'タスクモデル機能', type: :model do
   before do
+    user = FactoryBot.create(:second_user)
     @current_user = User.find_by(email: "user2@gmail.com")
   end
 

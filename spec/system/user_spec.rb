@@ -109,6 +109,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
 
     context '管理ユーザがログインすると' do  
       it '編集画面からユーザを編集できる' do
+        user2 = FactoryBot.create(:second_user, name: '太郎', email: "taro@gmail.com", admin: true)
         visit new_session_path
         fill_in 'session[email]', with: 'user1@gmail.com'
         fill_in 'session[password]', with: 'user1@gmail.com'
@@ -116,7 +117,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         visit admin_users_path
         click_on '編集', match: :first
         fill_in 'user[name]', with: 'user2_fixed'
-        fill_in 'user[email]', with: 'user3@gmail.com'
+        fill_in 'user[email]', with: 'user2@gmail.com'
         fill_in 'user[password]', with: 'user2@gmail.com'
         fill_in 'user[password_confirmation]', with: 'user2@gmail.com'
         click_on '登録する'
@@ -126,7 +127,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
 
     context '管理ユーザがログインすると' do  
       it 'ユーザの削除をできる' do
-        user = FactoryBot.create(:third_user, name: '太郎', email: "taro@gmail.com", admin: true)
+        user2 = FactoryBot.create(:second_user, name: '太郎', email: "taro@gmail.com", admin: true)
         visit new_session_path
         fill_in 'session[email]', with: 'user1@gmail.com'
         fill_in 'session[password]', with: 'user1@gmail.com'
@@ -142,9 +143,10 @@ RSpec.describe 'ユーザー管理機能', type: :system do
   describe '管理画面のテスト(一般ユーザー)' do
     context '一般ユーザは' do
       it '管理画面にアクセスできない' do
+        user3 = FactoryBot.create(:third_user)
         visit new_session_path
-        fill_in 'session[email]', with: 'user2@gmail.com'
-        fill_in 'session[password]', with: 'user2@gmail.com'
+        fill_in 'session[email]', with: 'user3@gmail.com'
+        fill_in 'session[password]', with: 'user3@gmail.com'
         click_on 'Log in'
         visit admin_users_path
         expect(page).to have_content '管理者権限がありません。'
