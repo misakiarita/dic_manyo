@@ -1,28 +1,24 @@
-<b><%= t('.create_date') %></b>
-<br>
-<%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
-<br>
-<b><%= t('.title') %></b>
-<br>
-<%= @task.title %>
-<br>
-<b><%= t('.content') %></b>
-<br>
-<%= @task.content %>
-<br>
-<b><%= t('.due_date') %></b>
-<br>
-<%= @task.due.strftime("%Y-%m-%d") %>
-<br>
-<b><%= t('.status') %></b>
-<br>
-<%= @task.status %>
-<br>
-<b>ラベル</b>
-<br>
-<% @labels.each do |tag| %>
-<%= tag.label_name %>
-<% end %>
-<br>
+<div class="mx-auto" style="width: 200px;" >
+  <b><%= t('.create_date') %></b>
+  <%= @task.created_at.strftime("%Y-%m-%d %H:%M") %>
+  <br>
+  <b><%= t('.title') %></b>
+  <%= @task.title %>
+  <br>
+  <b><%= t('.content') %></b>
+  <%= @task.content %>
+  <br>
+  <b><%= t('.due_date') %></b>
+  <%= @task.due.strftime("%Y-%m-%d") %>
+  <br>
+  <b><%= t('.status') %></b>
+  <%= @task.status %>
+  <p>ラベル:
+  <% @labels.each do |tag| %>
+    <%= tag.label_name %>
+  <% end %>
+  </p>
+</div>
+  <br>
 <%= link_to t('.list'), tasks_path %>
 
